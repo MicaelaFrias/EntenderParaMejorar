@@ -1,0 +1,138 @@
+//created on: Oct 5, 2020
+package EntenderParaMejorarRules
+
+//list any import classes here.
+import Models.HuellaCarbonoModel;
+import Models.PlanReduccionModel;
+import Models.IndicadoresEmisiónCO2IndirectosModel;
+import Models.IndicadoresEmisiónCO2DirectosModel;
+import AggregatesModels.MedioTransporteCotidiano;
+import AggregatesModels.MedioTransporteLargaDistancia;
+import AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia;
+import AggregatesModels.ConstanteMultiplicativaTransporteCotidiano;
+import AggregatesModels.RecorridoTransporteCotidiano;
+import AggregatesModels.RecorridoTransporteLargaDistancia;
+import Enums.TipoAlimentacionEnum;
+import Enums.GestionResiduosEnum;
+import Enums.PlanHabitosMejorarEnum;
+import Enums.ImpactoIndividuoEmisorEnum;
+
+
+//declare any global variables here
+
+
+
+
+rule "ImpactoBajo"
+
+    when
+        $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido <10 )
+    then
+    	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
+    	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Bajo);
+        $huellaCarbono.setPlanReduccion(planReduccion);
+
+end
+
+
+rule "ImpactoMedio"
+
+    when
+        $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido <>=10 && cantidadCO2Emitido < 20 )
+    then
+    	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
+    	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Medio);
+        $huellaCarbono.setPlanReduccion(planReduccion);
+
+end
+
+rule "ImpactoAlto"
+
+    when
+        $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido >= 20 )
+    then
+    	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
+    	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Alto);
+        $huellaCarbono.setPlanReduccion(planReduccion);
+
+end
+
+rule "PlanBajoImpacto"
+
+    when
+        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Bajo  )
+    then
+    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.BajoImpacto);
+end
+
+rule "PlanMedioImpacto"
+
+    when
+        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Medio  )
+    then
+    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.MedioImpacto);
+end
+
+rule "PlanAltoImpacto"
+
+    when
+        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Alto  )
+    then
+    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.AltoImpacto);
+end
+ 
+rule "CantidadCO2Compost"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.Compost  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(0.8);
+end
+
+rule "CantidadCO2SepararResiduos"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.SeparaResiduos  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.4);
+end
+
+rule "CantidadCO2NoHacerNada"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.NoHacerNada  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(2.1);
+end
+
+rule "CantidadCO2AlimentacionVegana"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Vegana  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.13);
+end
+
+rule "CantidadCO2AlimentacionVegetariana"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Vegetariana  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.58);
+end
+
+rule "CantidadCO2AlimentacionPescetariana"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Pescetariana  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.66);
+end
+
+rule "CantidadCO2AlimentacionOmnivora"
+
+    when
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Omnivora  )
+    then
+    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(2.28);
+end
