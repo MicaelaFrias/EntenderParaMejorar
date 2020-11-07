@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import org.kie.api.event.rule.AgendaGroupPoppedEvent;
 import org.kie.api.KieServices;
