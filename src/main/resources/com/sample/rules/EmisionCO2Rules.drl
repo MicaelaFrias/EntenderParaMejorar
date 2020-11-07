@@ -38,7 +38,7 @@ end
 rule "ImpactoMedio"
 
     when
-        $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido <>=10 && cantidadCO2Emitido < 20 )
+        $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido >=10 && cantidadCO2Emitido < 20 )
     then
     	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
     	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Medio);
@@ -84,7 +84,7 @@ end
 rule "CantidadCO2Compost"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.Compost  )
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel(getionResiduos   == GestionResiduosEnum.Compost  )
     then
     	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(0.8);
 end
@@ -100,7 +100,7 @@ end
 rule "CantidadCO2NoHacerNada"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.NoHacerNada  )
+        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos  == GestionResiduosEnum.NoHacerNada  )
     then
     	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(2.1);
 end

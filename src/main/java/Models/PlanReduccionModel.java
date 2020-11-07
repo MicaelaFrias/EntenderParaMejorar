@@ -7,13 +7,6 @@ public class PlanReduccionModel {
 	ImpactoIndividuoEmisorEnum ImpactIndividuoEmisor;
 	PlanHabitosMejorarEnum PlanHabitosMejorar;
 
-	public PlanReduccionModel(ImpactoIndividuoEmisorEnum impactIndividuoEmisor,
-			PlanHabitosMejorarEnum planHabitosMejorar) {
-		super();
-		ImpactIndividuoEmisor = impactIndividuoEmisor;
-		PlanHabitosMejorar = planHabitosMejorar;
-	}
-	
 	public ImpactoIndividuoEmisorEnum getImpactIndividuoEmisor() {
 		return ImpactIndividuoEmisor;
 	}
@@ -26,6 +19,12 @@ public class PlanReduccionModel {
 	}
 	public void setPlanHabitosMejorar(PlanHabitosMejorarEnum planHabitosMejorar) {
 		PlanHabitosMejorar = planHabitosMejorar;
+	}
+	@Override
+	public String toString() {
+		return "PlanReduccionModel [ImpactIndividuoEmisor="
+				+ ImpactIndividuoEmisor + ", PlanHabitosMejorar="
+				+ PlanHabitosMejorar + "]";
 	}
 	
 	

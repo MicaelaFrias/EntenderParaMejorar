@@ -6,30 +6,47 @@ import Enums.TipoAlimentacionEnum;
 public class IndicadoresEmisiónCO2IndirectosModel {
 	int ConsumoEléctricoMaximo;
 	TipoAlimentacionEnum Tipoalimentacion;
-	GestionResiduosEnum GetionResiduos;
+	GestionResiduosEnum GestionResiduos;
 	int CantidadCO2GestionResiduos;
 	int CantidadCO2TipoAlimentacion;
 	float ConsumoGasMaximo; 
 	int ConsumoGarrafa;
 	int ConsumoInternet;
-	int TotalCO2EmitidoIndirectamente;
+	double TotalCO2EmitidoIndirectamente;
 	
+	@Override
+	public String toString() {
+		return "IndicadoresEmisiónCO2IndirectosModel [ConsumoEléctricoMaximo="
+				+ ConsumoEléctricoMaximo + ", Tipoalimentacion="
+				+ Tipoalimentacion + ", GetionResiduos=" + GestionResiduos
+				+ ", CantidadCO2GestionResiduos=" + CantidadCO2GestionResiduos
+				+ ", CantidadCO2TipoAlimentacion="
+				+ CantidadCO2TipoAlimentacion + ", ConsumoGasMaximo="
+				+ ConsumoGasMaximo + ", ConsumoGarrafa=" + ConsumoGarrafa
+				+ ", ConsumoInternet=" + ConsumoInternet
+				+ ", TotalCO2EmitidoIndirectamente="
+				+ TotalCO2EmitidoIndirectamente + "]";
+	}
+
 	public IndicadoresEmisiónCO2IndirectosModel(int consumoEléctricoMaximo,
 			TipoAlimentacionEnum tipoalimentacion,
-			GestionResiduosEnum getionResiduos, int cantidadCO2GestionResiduos,
-			int cantidadCO2TipoAlimentacion, float consumoGasMaximo,
-			int consumoGarrafa, int consumoInternet,
-			int totalCO2EmitidoIndirectamente) {
+			GestionResiduosEnum getionResiduos, float consumoGasMaximo,
+			int consumoGarrafa, int consumoInternet) {
 		super();
 		ConsumoEléctricoMaximo = consumoEléctricoMaximo;
 		Tipoalimentacion = tipoalimentacion;
-		GetionResiduos = getionResiduos;
-		CantidadCO2GestionResiduos = cantidadCO2GestionResiduos;
-		CantidadCO2TipoAlimentacion = cantidadCO2TipoAlimentacion;
+		GestionResiduos = getionResiduos;
 		ConsumoGasMaximo = consumoGasMaximo;
 		ConsumoGarrafa = consumoGarrafa;
 		ConsumoInternet = consumoInternet;
-		TotalCO2EmitidoIndirectamente = totalCO2EmitidoIndirectamente;
+		//Formula para CO2 emitido indirectamente
+		TotalCO2EmitidoIndirectamente = 
+				ConsumoEléctricoMaximo * 0.000186 +
+				ConsumoGasMaximo * 0.00215 + 
+				ConsumoGarrafa * 0.00294 +
+				ConsumoInternet * 0.08   +
+				CantidadCO2GestionResiduos  + 
+				CantidadCO2TipoAlimentacion;
 	}
 
 	public int getConsumoEléctricoMaximo() {
@@ -49,11 +66,11 @@ public class IndicadoresEmisiónCO2IndirectosModel {
 	}
 
 	public GestionResiduosEnum getGetionResiduos() {
-		return GetionResiduos;
+		return GestionResiduos;
 	}
 
 	public void setGetionResiduos(GestionResiduosEnum getionResiduos) {
-		GetionResiduos = getionResiduos;
+		GestionResiduos = getionResiduos;
 	}
 
 	public int getCantidadCO2GestionResiduos() {
@@ -96,7 +113,7 @@ public class IndicadoresEmisiónCO2IndirectosModel {
 		ConsumoInternet = consumoInternet;
 	}
 
-	public int getTotalCO2EmitidoIndirectamente() {
+	public double getTotalCO2EmitidoIndirectamente() {
 		return TotalCO2EmitidoIndirectamente;
 	}
 

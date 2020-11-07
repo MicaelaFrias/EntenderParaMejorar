@@ -2,23 +2,33 @@ package Models;
 
 public class HuellaCarbonoModel {
 	int idHuella;
-	int CantidadCO2Emitido;
-	IndicadoresEmisiónCO2DirectosModel indicadoresEmisiónCO2Directos;
+	double CantidadCO2Emitido;
+	IndicadoresEmisiónCO2DirectosModel IndicadoresEmisiónCO2Directos;
 	IndicadoresEmisiónCO2IndirectosModel IndicadoresEmisiónCO2Indirectos;
 	PlanReduccionModel PlanReduccion;
 	
 	public HuellaCarbonoModel(
 			int idHuella,
-			int cantidadCO2Emitido,
-			IndicadoresEmisiónCO2DirectosModel indicadoresEmisiónCO2Directos,
-			IndicadoresEmisiónCO2IndirectosModel indicadoresEmisiónCO2Indirectos,
-			PlanReduccionModel planReduccion) {
+			IndicadoresEmisiónCO2DirectosModel IndicadoresEmisiónCO2Directos,
+			IndicadoresEmisiónCO2IndirectosModel IndicadoresEmisiónCO2Indirectos) {
 		super();
 		this.idHuella = idHuella;
-		CantidadCO2Emitido = cantidadCO2Emitido;
-		this.indicadoresEmisiónCO2Directos = indicadoresEmisiónCO2Directos;
-		IndicadoresEmisiónCO2Indirectos = indicadoresEmisiónCO2Indirectos;
-		PlanReduccion = planReduccion;
+		this.IndicadoresEmisiónCO2Directos = IndicadoresEmisiónCO2Directos;
+		this.IndicadoresEmisiónCO2Indirectos = IndicadoresEmisiónCO2Indirectos;
+		CantidadCO2Emitido = IndicadoresEmisiónCO2Directos.getTotalCO2EmitidoDirectamente() + 
+				IndicadoresEmisiónCO2Indirectos.getTotalCO2EmitidoIndirectamente();
+		this.PlanReduccion = new PlanReduccionModel();
+	}
+
+	@Override
+	public String toString() {
+		return "HuellaCarbonoModel [idHuella=" + idHuella
+				+ ", CantidadCO2Emitido=" + CantidadCO2Emitido
+				+ ", IndicadoresEmisiónCO2Directos="
+				+ IndicadoresEmisiónCO2Directos
+				+ ", IndicadoresEmisiónCO2Indirectos="
+				+ IndicadoresEmisiónCO2Indirectos + ", PlanReduccion="
+				+ PlanReduccion + "]";
 	}
 
 	public int getIdHuella() {
@@ -29,7 +39,7 @@ public class HuellaCarbonoModel {
 		this.idHuella = idHuella;
 	}
 
-	public int getCantidadCO2Emitido() {
+	public double getCantidadCO2Emitido() {
 		return CantidadCO2Emitido;
 	}
 
@@ -38,12 +48,12 @@ public class HuellaCarbonoModel {
 	}
 
 	public IndicadoresEmisiónCO2DirectosModel getIndicadoresEmisiónCO2Directos() {
-		return indicadoresEmisiónCO2Directos;
+		return IndicadoresEmisiónCO2Directos;
 	}
 
 	public void setIndicadoresEmisiónCO2Directos(
 			IndicadoresEmisiónCO2DirectosModel indicadoresEmisiónCO2Directos) {
-		this.indicadoresEmisiónCO2Directos = indicadoresEmisiónCO2Directos;
+		this.IndicadoresEmisiónCO2Directos = indicadoresEmisiónCO2Directos;
 	}
 
 	public IndicadoresEmisiónCO2IndirectosModel getIndicadoresEmisiónCO2Indirectos() {

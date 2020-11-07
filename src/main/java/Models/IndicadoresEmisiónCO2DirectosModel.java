@@ -1,48 +1,50 @@
 package Models;
 
-import AggregatesModels.MedioTransporteCotidiano;
-import AggregatesModels.MedioTransporteLargaDistancia;
 import AggregatesModels.RecorridoTransporteLargaDistancia;
 
 public class IndicadoresEmisiónCO2DirectosModel {
-	MedioTransporteCotidiano MedioTransporteCotidiano;
 	AggregatesModels.RecorridoTransporteCotidiano RecorridoTransporteCotidiano;
 	AggregatesModels.ConstanteMultiplicativaTransporteCotidiano ConstanteMultiplicativaTransporteCotidiano;
-	MedioTransporteLargaDistancia MedioTransporteLargaDistancia;
 	RecorridoTransporteLargaDistancia RecorridoTransporteLargaDistancia;
 	AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia ConstanteMultiplicativaTransporteLargaDistancia;
-	int TotalCO2EmitidoDirectamente;
+	float TotalCO2EmitidoDirectamente;
 	
 	
+	@Override
+	public String toString() {
+		return "IndicadoresEmisiónCO2DirectosModel [RecorridoTransporteCotidiano="
+				+ RecorridoTransporteCotidiano
+				+ ", ConstanteMultiplicativaTransporteCotidiano="
+				+ ConstanteMultiplicativaTransporteCotidiano
+				+ ", RecorridoTransporteLargaDistancia="
+				+ RecorridoTransporteLargaDistancia
+				+ ", ConstanteMultiplicativaTransporteLargaDistancia="
+				+ ConstanteMultiplicativaTransporteLargaDistancia
+				+ ", TotalCO2EmitidoDirectamente="
+				+ TotalCO2EmitidoDirectamente + "]";
+	}
+
 	public IndicadoresEmisiónCO2DirectosModel(
-			MedioTransporteCotidiano mediaTransporteCotidiano,
 			AggregatesModels.RecorridoTransporteCotidiano recorridoTransporteCotidiano,
 			AggregatesModels.ConstanteMultiplicativaTransporteCotidiano constanteMultiplicativaTransporteCotidiano,
-			MedioTransporteLargaDistancia mediaTransporteLargaDistancia,
 			AggregatesModels.RecorridoTransporteLargaDistancia recorridoTransporteLargaDistancia,
-			AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia constanteMultiplicativaTransporteLargaDistancia,
-			int totalCO2EmitidoDirectamente) {
+			AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia constanteMultiplicativaTransporteLargaDistancia) {
 		super();
-		MedioTransporteCotidiano = mediaTransporteCotidiano;
 		RecorridoTransporteCotidiano = recorridoTransporteCotidiano;
 		ConstanteMultiplicativaTransporteCotidiano = constanteMultiplicativaTransporteCotidiano;
-		MedioTransporteLargaDistancia = mediaTransporteLargaDistancia;
 		RecorridoTransporteLargaDistancia = recorridoTransporteLargaDistancia;
 		ConstanteMultiplicativaTransporteLargaDistancia = constanteMultiplicativaTransporteLargaDistancia;
-		TotalCO2EmitidoDirectamente = totalCO2EmitidoDirectamente;
+		TotalCO2EmitidoDirectamente = 
+				RecorridoTransporteCotidiano.getMoto() * ConstanteMultiplicativaTransporteCotidiano.getMoto() + 
+				RecorridoTransporteCotidiano.getAuto() * ConstanteMultiplicativaTransporteCotidiano.getAuto() +
+				RecorridoTransporteCotidiano.getColectivo() * constanteMultiplicativaTransporteCotidiano.getColectivo()+
+				RecorridoTransporteCotidiano.getSubte() * constanteMultiplicativaTransporteCotidiano.getSubte() +
+				RecorridoTransporteCotidiano.getCombie() * constanteMultiplicativaTransporteCotidiano.getCombie()+ 
+				RecorridoTransporteCotidiano.getTren() * constanteMultiplicativaTransporteCotidiano.getTren()  +
+				RecorridoTransporteLargaDistancia.getAvion() * constanteMultiplicativaTransporteLargaDistancia.getAvion() +  
+				RecorridoTransporteLargaDistancia.getAuto() * constanteMultiplicativaTransporteLargaDistancia.getAuto() +  
+				RecorridoTransporteLargaDistancia.getMicro() * constanteMultiplicativaTransporteLargaDistancia.getMicro();
 	}
-
-
-	public MedioTransporteCotidiano getMediaTransporteCotidiano() {
-		return MedioTransporteCotidiano;
-	}
-
-
-	public void setMediaTransporteCotidiano(
-			MedioTransporteCotidiano mediaTransporteCotidiano) {
-		MedioTransporteCotidiano = mediaTransporteCotidiano;
-	}
-
 
 	public AggregatesModels.RecorridoTransporteCotidiano getRecorridoTransporteCotidiano() {
 		return RecorridoTransporteCotidiano;
@@ -53,18 +55,6 @@ public class IndicadoresEmisiónCO2DirectosModel {
 			AggregatesModels.RecorridoTransporteCotidiano recorridoTransporteCotidiano) {
 		RecorridoTransporteCotidiano = recorridoTransporteCotidiano;
 	}
-
-
-	public MedioTransporteLargaDistancia getMediaTransporteLargaDistancia() {
-		return MedioTransporteLargaDistancia;
-	}
-
-
-	public void setMediaTransporteLargaDistancia(
-			MedioTransporteLargaDistancia mediaTransporteLargaDistancia) {
-		MedioTransporteLargaDistancia = mediaTransporteLargaDistancia;
-	}
-
 
 	public RecorridoTransporteLargaDistancia getRecorridoTransporteLargaDistancia() {
 		return RecorridoTransporteLargaDistancia;
@@ -77,7 +67,7 @@ public class IndicadoresEmisiónCO2DirectosModel {
 	}
 
 
-	public int getTotalCO2EmitidoDirectamente() {
+	public float getTotalCO2EmitidoDirectamente() {
 		return TotalCO2EmitidoDirectamente;
 	}
 
