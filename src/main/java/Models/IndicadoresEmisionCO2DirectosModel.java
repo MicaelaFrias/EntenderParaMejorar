@@ -2,7 +2,7 @@ package Models;
 
 import AggregatesModels.RecorridoTransporteLargaDistancia;
 
-public class IndicadoresEmisiónCO2DirectosModel {
+public class IndicadoresEmisionCO2DirectosModel {
 	AggregatesModels.RecorridoTransporteCotidiano RecorridoTransporteCotidiano;
 	AggregatesModels.ConstanteMultiplicativaTransporteCotidiano ConstanteMultiplicativaTransporteCotidiano;
 	RecorridoTransporteLargaDistancia RecorridoTransporteLargaDistancia;
@@ -12,7 +12,7 @@ public class IndicadoresEmisiónCO2DirectosModel {
 	
 	@Override
 	public String toString() {
-		return "IndicadoresEmisiónCO2DirectosModel [RecorridoTransporteCotidiano="
+		return "IndicadoresEmisionCO2DirectosModel [RecorridoTransporteCotidiano="
 				+ RecorridoTransporteCotidiano
 				+ ", ConstanteMultiplicativaTransporteCotidiano="
 				+ ConstanteMultiplicativaTransporteCotidiano
@@ -24,7 +24,7 @@ public class IndicadoresEmisiónCO2DirectosModel {
 				+ TotalCO2EmitidoDirectamente + "]";
 	}
 
-	public IndicadoresEmisiónCO2DirectosModel(
+	public IndicadoresEmisionCO2DirectosModel(
 			AggregatesModels.RecorridoTransporteCotidiano recorridoTransporteCotidiano,
 			AggregatesModels.ConstanteMultiplicativaTransporteCotidiano constanteMultiplicativaTransporteCotidiano,
 			AggregatesModels.RecorridoTransporteLargaDistancia recorridoTransporteLargaDistancia,

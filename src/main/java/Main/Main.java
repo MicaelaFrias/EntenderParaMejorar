@@ -13,8 +13,8 @@ import AggregatesModels.RecorridoTransporteLargaDistancia;
 import Enums.GestionResiduosEnum;
 import Enums.TipoAlimentacionEnum;
 import Models.HuellaCarbonoModel;
-import Models.IndicadoresEmisiónCO2DirectosModel;
-import Models.IndicadoresEmisiónCO2IndirectosModel;
+import Models.IndicadoresEmisionCO2DirectosModel;
+import Models.IndicadoresEmisionCO2IndirectosModel;
 import Utils.KnowledgeSessionHelper;
 
 ;
@@ -30,14 +30,14 @@ public class Main {
 		//insertar datos en la base de hechos
 		for (int i = 0; i <5; i++) {
 			//indicadores indirectos
-			IndicadoresEmisiónCO2IndirectosModel indicadoresIndirectos =  new IndicadoresEmisiónCO2IndirectosModel(200, 
+			IndicadoresEmisionCO2IndirectosModel indicadoresIndirectos =  new IndicadoresEmisionCO2IndirectosModel(200, 
 					TipoAlimentacionEnum.Omnivora, GestionResiduosEnum.NoHaceNada, 200, 10, 8);
 			
 			//indicadores directos
 			RecorridoTransporteCotidiano recorridoCotidiano = new RecorridoTransporteCotidiano(0,0,200,0,0,0);
 			RecorridoTransporteLargaDistancia recorridoLargaDistancia = new RecorridoTransporteLargaDistancia(0,2000,0);
 
-			IndicadoresEmisiónCO2DirectosModel indicadoresDirectos =  new IndicadoresEmisiónCO2DirectosModel(recorridoCotidiano, 
+			IndicadoresEmisionCO2DirectosModel indicadoresDirectos =  new IndicadoresEmisionCO2DirectosModel(recorridoCotidiano, 
 					new ConstanteMultiplicativaTransporteCotidiano(), recorridoLargaDistancia, new ConstanteMultiplicativaTransporteLargaDistancia());
 			
 			//huella de caerbono
@@ -53,7 +53,7 @@ public class Main {
 		//mostramos las huellas a analizar
 		for (HuellaCarbonoModel huellaCarbono : huellasDeCarbono) {
 			System.out.println(huellaCarbono);
-			System.out.println(huellaCarbono.getPlanReduccion());
+			// System.out.println(huellaCarbono.getPlanReduccion());
 		}
 	}
 }

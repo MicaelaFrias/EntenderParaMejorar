@@ -2,20 +2,20 @@
 package EntenderParaMejorarRules
 
 //list any import classes here.
-import Models.HuellaCarbonoModel;
-import Models.PlanReduccionModel;
-import Models.IndicadoresEmisiónCO2IndirectosModel;
-import Models.IndicadoresEmisiónCO2DirectosModel;
-import AggregatesModels.MedioTransporteCotidiano;
-import AggregatesModels.MedioTransporteLargaDistancia;
-import AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia;
-import AggregatesModels.ConstanteMultiplicativaTransporteCotidiano;
-import AggregatesModels.RecorridoTransporteCotidiano;
-import AggregatesModels.RecorridoTransporteLargaDistancia;
-import Enums.TipoAlimentacionEnum;
-import Enums.GestionResiduosEnum;
-import Enums.PlanHabitosMejorarEnum;
-import Enums.ImpactoIndividuoEmisorEnum;
+import Models.HuellaCarbonoModel
+import Models.PlanReduccionModel
+import Models.IndicadoresEmisionCO2IndirectosModel
+import Models.IndicadoresEmisionCO2DirectosModel
+import AggregatesModels.MedioTransporteCotidiano
+import AggregatesModels.MedioTransporteLargaDistancia
+import AggregatesModels.ConstanteMultiplicativaTransporteLargaDistancia
+import AggregatesModels.ConstanteMultiplicativaTransporteCotidiano
+import AggregatesModels.RecorridoTransporteCotidiano
+import AggregatesModels.RecorridoTransporteLargaDistancia
+import Enums.TipoAlimentacionEnum
+import Enums.GestionResiduosEnum
+import Enums.PlanHabitosMejorarEnum
+import Enums.ImpactoIndividuoEmisorEnum
 
 
 //declare any global variables here
@@ -28,10 +28,11 @@ rule "ImpactoBajo"
     when
         $huellaCarbono : HuellaCarbonoModel( cantidadCO2Emitido <10 )
     then
-    	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
-    	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Bajo);
-        $huellaCarbono.setPlanReduccion(planReduccion);
-
+    	PlanReduccionModel test = new PlanReduccionModel();
+    	test.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Bajo);
+        $huellaCarbono.setPlanReduccion(test);
+       	update($huellaCarbono);
+    	System.out.println("Entre");
 end
 
 
@@ -43,7 +44,8 @@ rule "ImpactoMedio"
     	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
     	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Medio);
         $huellaCarbono.setPlanReduccion(planReduccion);
-
+        update($huellaCarbono);
+    	System.out.println("Entre");
 end
 
 rule "ImpactoAlto"
@@ -54,85 +56,107 @@ rule "ImpactoAlto"
     	PlanReduccionModel planReduccion = $huellaCarbono.getPlanReduccion();
     	planReduccion.setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Alto);
         $huellaCarbono.setPlanReduccion(planReduccion);
+        update($huellaCarbono);
+    	System.out.println("Entre");
 
 end
 
 rule "PlanBajoImpacto"
 
     when
-        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Bajo  )
+        $huellaDeCarbono : HuellaCarbonoModel( planReduccion.impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Bajo  )
     then
-    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.BajoImpacto);
+    	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.BajoImpacto);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "PlanMedioImpacto"
 
-    when
-        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Medio  )
+ when
+        $huellaDeCarbono : HuellaCarbonoModel( planReduccion.impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Medio  )
     then
-    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.MedioImpacto);
+    	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.MedioImpacto);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "PlanAltoImpacto"
 
-    when
-        $planReduccion : PlanReduccionModel(impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Alto  )
+     when
+        $huellaDeCarbono : HuellaCarbonoModel( planReduccion.impactIndividuoEmisor == ImpactoIndividuoEmisorEnum.Alto  )
     then
-    	$planReduccion.setPlanHabitosMejorar(PlanHabitosMejorarEnum.AltoImpacto);
+    	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.AltoImpacto);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
  
 rule "CantidadCO2Compost"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel(getionResiduos   == GestionResiduosEnum.Compost  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.getionResiduos  == GestionResiduosEnum.Compost  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(0.8);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(0.8);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2SepararResiduos"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos == GestionResiduosEnum.SeparaResiduos  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.getionResiduos  == GestionResiduosEnum.SeparaResiduos  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.4);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(1.4);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2NoHacerNada"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( getionResiduos  == GestionResiduosEnum.NoHacerNada  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.getionResiduos  == GestionResiduosEnum.NoHacerNada  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(2.1);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(2.1);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2AlimentacionVegana"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Vegana  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.tipoalimentacion   == TipoAlimentacionEnum.Vegana  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.13);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.13);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2AlimentacionVegetariana"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Vegetariana  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.tipoalimentacion   == TipoAlimentacionEnum.Vegetariana  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.58);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.58);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2AlimentacionPescetariana"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Pescetariana  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.tipoalimentacion   == TipoAlimentacionEnum.Pescetariana  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(1.66);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.66);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end
 
 rule "CantidadCO2AlimentacionOmnivora"
 
     when
-        $indicadorCO2Indirecto : IndicadoresEmisiónCO2IndirectosModel( tipoalimentacion  == TipoAlimentacionEnum.Omnivora  )
+        $huellaDeCarbono : HuellaCarbonoModel( indicadoresEmisionCO2Indirectos.tipoalimentacion   == TipoAlimentacionEnum.Omnivora  )
     then
-    	$indicadorCO2Indirecto.setCantidadCO2GestionResiduos(2.28);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(2.28);
+    	update($huellaDeCarbono);
+    	System.out.println("Entre");
 end

@@ -3,12 +3,12 @@ package Models;
 import Enums.GestionResiduosEnum;
 import Enums.TipoAlimentacionEnum;
 
-public class IndicadoresEmisiónCO2IndirectosModel {
+public class IndicadoresEmisionCO2IndirectosModel {
 	int ConsumoEléctricoMaximo;
 	TipoAlimentacionEnum Tipoalimentacion;
 	GestionResiduosEnum GestionResiduos;
-	int CantidadCO2GestionResiduos;
-	int CantidadCO2TipoAlimentacion;
+	double CantidadCO2GestionResiduos;
+	double CantidadCO2TipoAlimentacion;
 	float ConsumoGasMaximo; 
 	int ConsumoGarrafa;
 	int ConsumoInternet;
@@ -16,7 +16,7 @@ public class IndicadoresEmisiónCO2IndirectosModel {
 	
 	@Override
 	public String toString() {
-		return "IndicadoresEmisiónCO2IndirectosModel [ConsumoEléctricoMaximo="
+		return "IndicadoresEmisionCO2IndirectosModel [ConsumoEléctricoMaximo="
 				+ ConsumoEléctricoMaximo + ", Tipoalimentacion="
 				+ Tipoalimentacion + ", GetionResiduos=" + GestionResiduos
 				+ ", CantidadCO2GestionResiduos=" + CantidadCO2GestionResiduos
@@ -28,14 +28,14 @@ public class IndicadoresEmisiónCO2IndirectosModel {
 				+ TotalCO2EmitidoIndirectamente + "]";
 	}
 
-	public IndicadoresEmisiónCO2IndirectosModel(int consumoEléctricoMaximo,
+	public IndicadoresEmisionCO2IndirectosModel(int consumoEléctricoMaximo,
 			TipoAlimentacionEnum tipoalimentacion,
-			GestionResiduosEnum getionResiduos, float consumoGasMaximo,
+			GestionResiduosEnum gestionResiduos, float consumoGasMaximo,
 			int consumoGarrafa, int consumoInternet) {
 		super();
 		ConsumoEléctricoMaximo = consumoEléctricoMaximo;
 		Tipoalimentacion = tipoalimentacion;
-		GestionResiduos = getionResiduos;
+		GestionResiduos = gestionResiduos;
 		ConsumoGasMaximo = consumoGasMaximo;
 		ConsumoGarrafa = consumoGarrafa;
 		ConsumoInternet = consumoInternet;
@@ -73,19 +73,19 @@ public class IndicadoresEmisiónCO2IndirectosModel {
 		GestionResiduos = getionResiduos;
 	}
 
-	public int getCantidadCO2GestionResiduos() {
+	public double getCantidadCO2GestionResiduos() {
 		return CantidadCO2GestionResiduos;
 	}
 
-	public void setCantidadCO2GestionResiduos(int cantidadCO2GestionResiduos) {
+	public void setCantidadCO2GestionResiduos(double cantidadCO2GestionResiduos) {
 		CantidadCO2GestionResiduos = cantidadCO2GestionResiduos;
 	}
 
-	public int getCantidadCO2TipoAlimentacion() {
+	public double getCantidadCO2TipoAlimentacion() {
 		return CantidadCO2TipoAlimentacion;
 	}
 
-	public void setCantidadCO2TipoAlimentacion(int cantidadCO2TipoAlimentacion) {
+	public void setCantidadCO2TipoAlimentacion(double cantidadCO2TipoAlimentacion) {
 		CantidadCO2TipoAlimentacion = cantidadCO2TipoAlimentacion;
 	}
 

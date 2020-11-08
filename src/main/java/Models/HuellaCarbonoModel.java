@@ -3,20 +3,20 @@ package Models;
 public class HuellaCarbonoModel {
 	int idHuella;
 	double CantidadCO2Emitido;
-	IndicadoresEmisiónCO2DirectosModel IndicadoresEmisiónCO2Directos;
-	IndicadoresEmisiónCO2IndirectosModel IndicadoresEmisiónCO2Indirectos;
+	IndicadoresEmisionCO2DirectosModel IndicadoresEmisionCO2Directos;
+	IndicadoresEmisionCO2IndirectosModel IndicadoresEmisionCO2Indirectos;
 	PlanReduccionModel PlanReduccion;
 	
 	public HuellaCarbonoModel(
 			int idHuella,
-			IndicadoresEmisiónCO2DirectosModel IndicadoresEmisiónCO2Directos,
-			IndicadoresEmisiónCO2IndirectosModel IndicadoresEmisiónCO2Indirectos) {
+			IndicadoresEmisionCO2DirectosModel IndicadoresEmisionCO2Directos,
+			IndicadoresEmisionCO2IndirectosModel IndicadoresEmisionCO2Indirectos) {
 		super();
 		this.idHuella = idHuella;
-		this.IndicadoresEmisiónCO2Directos = IndicadoresEmisiónCO2Directos;
-		this.IndicadoresEmisiónCO2Indirectos = IndicadoresEmisiónCO2Indirectos;
-		CantidadCO2Emitido = IndicadoresEmisiónCO2Directos.getTotalCO2EmitidoDirectamente() + 
-				IndicadoresEmisiónCO2Indirectos.getTotalCO2EmitidoIndirectamente();
+		this.IndicadoresEmisionCO2Directos = IndicadoresEmisionCO2Directos;
+		this.IndicadoresEmisionCO2Indirectos = IndicadoresEmisionCO2Indirectos;
+		CantidadCO2Emitido = IndicadoresEmisionCO2Directos.getTotalCO2EmitidoDirectamente() + 
+				IndicadoresEmisionCO2Indirectos.getTotalCO2EmitidoIndirectamente();
 		this.PlanReduccion = new PlanReduccionModel();
 	}
 
@@ -24,10 +24,10 @@ public class HuellaCarbonoModel {
 	public String toString() {
 		return "HuellaCarbonoModel [idHuella=" + idHuella
 				+ ", CantidadCO2Emitido=" + CantidadCO2Emitido
-				+ ", IndicadoresEmisiónCO2Directos="
-				+ IndicadoresEmisiónCO2Directos
-				+ ", IndicadoresEmisiónCO2Indirectos="
-				+ IndicadoresEmisiónCO2Indirectos + ", PlanReduccion="
+				+ ", IndicadoresEmisionCO2Directos="
+				+ IndicadoresEmisionCO2Directos
+				+ ", IndicadoresEmisionCO2Indirectos="
+				+ IndicadoresEmisionCO2Indirectos + ", PlanReduccion="
 				+ PlanReduccion + "]";
 	}
 
@@ -47,22 +47,22 @@ public class HuellaCarbonoModel {
 		CantidadCO2Emitido = cantidadCO2Emitido;
 	}
 
-	public IndicadoresEmisiónCO2DirectosModel getIndicadoresEmisiónCO2Directos() {
-		return IndicadoresEmisiónCO2Directos;
+	public IndicadoresEmisionCO2DirectosModel getIndicadoresEmisionCO2Directos() {
+		return IndicadoresEmisionCO2Directos;
 	}
 
-	public void setIndicadoresEmisiónCO2Directos(
-			IndicadoresEmisiónCO2DirectosModel indicadoresEmisiónCO2Directos) {
-		this.IndicadoresEmisiónCO2Directos = indicadoresEmisiónCO2Directos;
+	public void setIndicadoresEmisionCO2Directos(
+			IndicadoresEmisionCO2DirectosModel indicadoresEmisionCO2Directos) {
+		this.IndicadoresEmisionCO2Directos = indicadoresEmisionCO2Directos;
 	}
 
-	public IndicadoresEmisiónCO2IndirectosModel getIndicadoresEmisiónCO2Indirectos() {
-		return IndicadoresEmisiónCO2Indirectos;
+	public IndicadoresEmisionCO2IndirectosModel getIndicadoresEmisionCO2Indirectos() {
+		return IndicadoresEmisionCO2Indirectos;
 	}
 
-	public void setIndicadoresEmisiónCO2Indirectos(
-			IndicadoresEmisiónCO2IndirectosModel indicadoresEmisiónCO2Indirectos) {
-		IndicadoresEmisiónCO2Indirectos = indicadoresEmisiónCO2Indirectos;
+	public void setIndicadoresEmisionCO2Indirectos(
+			IndicadoresEmisionCO2IndirectosModel indicadoresEmisionCO2Indirectos) {
+		IndicadoresEmisionCO2Indirectos = indicadoresEmisionCO2Indirectos;
 	}
 
 	public PlanReduccionModel getPlanReduccion() {
