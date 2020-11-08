@@ -19,9 +19,8 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(0.8);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 0.8);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(0.8 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
-    	System.out.println("Entre7");
 end
 
 rule "CantidadCO2SepararResiduos"
@@ -32,9 +31,9 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(1.4);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 1.4);	
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());  
+    	    	$huellaDeCarbono.setCantidadCO2Emitido(1.4 + $huellaDeCarbono.getCantidadCO2Emitido());
+ 
     	update($huellaDeCarbono);
-    	System.out.println("Entre8");
 end
 
 rule "CantidadCO2NoHacerNada"
@@ -45,9 +44,8 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(0.8);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 0.8);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(0.8 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
-    	System.out.println("Entre9");
 end
 
 rule "CantidadCO2AlimentacionVegana"
@@ -58,9 +56,9 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.13);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 1.13);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(1.13 + $huellaDeCarbono.getCantidadCO2Emitido());
+
     	update($huellaDeCarbono);
-    	System.out.println("Entre10");
 end
 
 rule "CantidadCO2AlimentacionVegetariana"
@@ -71,9 +69,8 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.58);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 1.58);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(1.58 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
-    	System.out.println("Entre11");
 end
 
 rule "CantidadCO2AlimentacionPescetariana"
@@ -84,9 +81,8 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(1.66);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 1.66);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(1.66 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
-    	System.out.println("Entre12");
 end
 
 rule "CantidadCO2AlimentacionOmnivora"
@@ -97,7 +93,7 @@ lock-on-active
     	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2TipoAlimentacion(2.28);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 2.28);
-    	$huellaDeCarbono.setCantidadCO2Emitido($huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
+    	$huellaDeCarbono.setCantidadCO2Emitido(2.28 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
 end
 
@@ -110,7 +106,6 @@ lock-on-active
     	$huellaDeCarbono.getPlanReduccion().setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Bajo);
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.BajoImpacto);
        	update($huellaDeCarbono);
-    	System.out.println("Entre1");
 end
 
 
@@ -122,7 +117,6 @@ lock-on-active
     	$huellaDeCarbono.getPlanReduccion().setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Medio);
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.MedioImpacto);
         update($huellaDeCarbono);
-    	System.out.println("Entre2");
 end
 
 rule "ImpactoAlto"
@@ -133,7 +127,6 @@ lock-on-active
     	$huellaDeCarbono.getPlanReduccion().setImpactIndividuoEmisor(ImpactoIndividuoEmisorEnum.Alto);
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.AltoImpacto);
         update($huellaDeCarbono);
-    	System.out.println("Entre3");
 
 end
 
@@ -144,7 +137,6 @@ lock-on-active
     then
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.BajoImpacto);
     	update($huellaDeCarbono);
-    	System.out.println("Entre4");
 end
 
 rule "PlanMedioImpacto"
@@ -154,7 +146,6 @@ lock-on-active
     then
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.MedioImpacto);
     	update($huellaDeCarbono);
-    	System.out.println("Entre5");
 end
 
 rule "PlanAltoImpacto"
@@ -164,6 +155,5 @@ lock-on-active
     then
     	$huellaDeCarbono.getPlanReduccion().setPlanHabitosMejorar(PlanHabitosMejorarEnum.AltoImpacto);
     	update($huellaDeCarbono);
-    	System.out.println("Entre6");
 end
  

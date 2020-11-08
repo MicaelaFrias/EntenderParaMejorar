@@ -28,7 +28,7 @@ public class Main {
 		ArrayList<HuellaCarbonoModel> huellasDeCarbono =  new ArrayList<HuellaCarbonoModel>();
 
 		//insertar datos en la base de hechos
-		//for (int i = 0; i <5; i++) {
+		for (int i = 0; i <5; i++) {
 			//indicadores indirectos
 			IndicadoresEmisionCO2IndirectosModel indicadoresIndirectos =  new IndicadoresEmisionCO2IndirectosModel(200, 
 					TipoAlimentacionEnum.Omnivora, GestionResiduosEnum.NoHaceNada, 200, 10, 8);
@@ -40,21 +40,21 @@ public class Main {
 			IndicadoresEmisionCO2DirectosModel indicadoresDirectos =  new IndicadoresEmisionCO2DirectosModel(recorridoCotidiano, 
 					new ConstanteMultiplicativaTransporteCotidiano(), recorridoLargaDistancia, new ConstanteMultiplicativaTransporteLargaDistancia());
 			
-			//huella de caerbono
+			//huella de carbono
 			HuellaCarbonoModel huellaCarbono = new HuellaCarbonoModel(new Random().nextInt(50), 
 					indicadoresDirectos,indicadoresIndirectos);
 			
 	
 			huellasDeCarbono.add(huellaCarbono);
 			session.insert(huellaCarbono);
-		//}
+		}
 		session.fireAllRules();
 		
 		//mostramos las huellas a analizar
 		for (HuellaCarbonoModel huellaCarbono1 : huellasDeCarbono) {
-			System.out.println(huellaCarbono1.getCantidadCO2Emitido());
-			System.out.println(huellaCarbono1.getIndicadoresEmisionCO2Directos());
-			System.out.println(huellaCarbono1.getIndicadoresEmisionCO2Indirectos());
+			System.out.println("total:" + huellaCarbono1.getCantidadCO2Emitido());
+			System.out.println("directo:" + huellaCarbono1.getIndicadoresEmisionCO2Directos().getTotalCO2EmitidoDirectamente());
+			System.out.println("indirecto:" +huellaCarbono1.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente());
 		}
 	}
 }
