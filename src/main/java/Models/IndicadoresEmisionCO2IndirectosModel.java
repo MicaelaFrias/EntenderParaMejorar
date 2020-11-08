@@ -18,7 +18,7 @@ public class IndicadoresEmisionCO2IndirectosModel {
 	public String toString() {
 		return "IndicadoresEmisionCO2IndirectosModel [ConsumoEléctricoMaximo="
 				+ ConsumoEléctricoMaximo + ", Tipoalimentacion="
-				+ Tipoalimentacion + ", GetionResiduos=" + GestionResiduos
+				+ Tipoalimentacion + ", GestionResiduos=" + GestionResiduos
 				+ ", CantidadCO2GestionResiduos=" + CantidadCO2GestionResiduos
 				+ ", CantidadCO2TipoAlimentacion="
 				+ CantidadCO2TipoAlimentacion + ", ConsumoGasMaximo="
@@ -44,9 +44,7 @@ public class IndicadoresEmisionCO2IndirectosModel {
 				ConsumoEléctricoMaximo * 0.000186 +
 				ConsumoGasMaximo * 0.00215 + 
 				ConsumoGarrafa * 0.00294 +
-				ConsumoInternet * 0.08   +
-				CantidadCO2GestionResiduos  + 
-				CantidadCO2TipoAlimentacion;
+				ConsumoInternet * 0.08;
 	}
 
 	public int getConsumoEléctricoMaximo() {
@@ -65,12 +63,12 @@ public class IndicadoresEmisionCO2IndirectosModel {
 		Tipoalimentacion = tipoalimentacion;
 	}
 
-	public GestionResiduosEnum getGetionResiduos() {
+	public GestionResiduosEnum getGestionResiduos() {
 		return GestionResiduos;
 	}
 
-	public void setGetionResiduos(GestionResiduosEnum getionResiduos) {
-		GestionResiduos = getionResiduos;
+	public void setGestionResiduos(GestionResiduosEnum gestionResiduos) {
+		GestionResiduos = gestionResiduos;
 	}
 
 	public double getCantidadCO2GestionResiduos() {
@@ -117,7 +115,7 @@ public class IndicadoresEmisionCO2IndirectosModel {
 		return TotalCO2EmitidoIndirectamente;
 	}
 
-	public void setTotalCO2EmitidoIndirectamente(int totalCO2EmitidoIndirectamente) {
+	public void setTotalCO2EmitidoIndirectamente(double totalCO2EmitidoIndirectamente) {
 		TotalCO2EmitidoIndirectamente = totalCO2EmitidoIndirectamente;
 	}
 

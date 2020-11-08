@@ -6,13 +6,17 @@ public class HuellaCarbonoModel {
 	IndicadoresEmisionCO2DirectosModel IndicadoresEmisionCO2Directos;
 	IndicadoresEmisionCO2IndirectosModel IndicadoresEmisionCO2Indirectos;
 	PlanReduccionModel PlanReduccion;
+	boolean HuellaActiva;
 	
+
+
 	public HuellaCarbonoModel(
 			int idHuella,
 			IndicadoresEmisionCO2DirectosModel IndicadoresEmisionCO2Directos,
 			IndicadoresEmisionCO2IndirectosModel IndicadoresEmisionCO2Indirectos) {
 		super();
 		this.idHuella = idHuella;
+		this.HuellaActiva = false;
 		this.IndicadoresEmisionCO2Directos = IndicadoresEmisionCO2Directos;
 		this.IndicadoresEmisionCO2Indirectos = IndicadoresEmisionCO2Indirectos;
 		CantidadCO2Emitido = IndicadoresEmisionCO2Directos.getTotalCO2EmitidoDirectamente() + 
@@ -34,7 +38,13 @@ public class HuellaCarbonoModel {
 	public int getIdHuella() {
 		return idHuella;
 	}
+	public boolean isHuellaActiva() {
+		return HuellaActiva;
+	}
 
+	public void setHuellaActiva(boolean huellaActiva) {
+		HuellaActiva = huellaActiva;
+	}
 	public void setIdHuella(int idHuella) {
 		this.idHuella = idHuella;
 	}
@@ -43,7 +53,7 @@ public class HuellaCarbonoModel {
 		return CantidadCO2Emitido;
 	}
 
-	public void setCantidadCO2Emitido(int cantidadCO2Emitido) {
+	public void setCantidadCO2Emitido(double cantidadCO2Emitido) {
 		CantidadCO2Emitido = cantidadCO2Emitido;
 	}
 
