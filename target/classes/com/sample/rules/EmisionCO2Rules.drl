@@ -36,15 +36,15 @@ lock-on-active
     	update($huellaDeCarbono);
 end
 
-rule "CantidadCO2NoHacerNada"
+rule "CantidadCO2NoHaceNada"
 lock-on-active 
    when
         $huellaDeCarbono : HuellaCarbonoModel(indicadoresEmisionCO2Indirectos.gestionResiduos   == GestionResiduosEnum.NoHaceNada  )
     then
-    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(0.8);
+    	$huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setCantidadCO2GestionResiduos(2.1);
     	double indicadoresIndirectos = $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().getTotalCO2EmitidoIndirectamente();
         $huellaDeCarbono.getIndicadoresEmisionCO2Indirectos().setTotalCO2EmitidoIndirectamente(indicadoresIndirectos + 0.8);
-    	$huellaDeCarbono.setCantidadCO2Emitido(0.8 + $huellaDeCarbono.getCantidadCO2Emitido());
+    	$huellaDeCarbono.setCantidadCO2Emitido(2.1 + $huellaDeCarbono.getCantidadCO2Emitido());
     	update($huellaDeCarbono);
 end
 
