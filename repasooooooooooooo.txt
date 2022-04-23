@@ -4,6 +4,7 @@ encabezado en modal validacion aparecen contratos q no deberian aparecer
 contemplar cuando no hay info y se saca algo anual, que retorne 0
 luego analizar si el mes esta o no cargada su info (otra instancia)
 
-proceso para borrar fisicamente registros
+proceso para borrar fisicamente registros.
+
       
   
